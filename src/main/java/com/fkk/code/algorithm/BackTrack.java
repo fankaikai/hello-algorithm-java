@@ -187,6 +187,86 @@ public class BackTrack {
         }
     }
 
+    /**
+     * n皇后问题:
+     * 根据国际象棋的规则，皇后可以攻击与同处一行、一列或一条斜线上的棋子。
+     * 给定 n 个皇后和一个 nxn 大小的棋盘，寻找使得所有皇后之间无法相互攻击的摆放方案。
+     * <p>
+     * 每一种解法就是一个棋盘摆法，是List<List> 代表m行k列
+     * 所有解法输出也就是 List<List<List>>>
+     * <p>
+     * 时间复杂度：每层可选n*(n-1)*(n-2)...2*1，所以是O(n!)，因为有剪枝操作，所以实际优于该复杂度
+     * 空间复杂度O(n²)
+     */
+    public static List<List<List<String>>> nQueens(int n) {
+        //初始化nxn大小的棋盘
+        List<List<String>> state = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            List<String> column = new ArrayList<>();
+            for (int j = 0; j < n; j++) {
+                column.add("#");
+            }
+            state.add(column);
+        }
+        boolean[] columns = new boolean[n];
+        boolean[] diags1 = new boolean[2 * n - 1];
+        boolean[] diags2 = new boolean[2 * n - 1];
+        List<List<List<String>>> res = new ArrayList<>();
+        backtrack5(0, n, state, res, columns, diags1, diags2);
+        return res;
+    }
+
+
+    private static void backtrack5(int row, int n, List<List<String>> state, List<List<List<String>>> res, boolean[] columns, boolean[] diags1, boolean[] diags2) {
+        //终止条件：放完所有行数
+        if (row == n) {
+            List<List<String>> tempState = new ArrayList<>();
+            for (List<String> tempRow : state) {
+                tempState.add(new ArrayList<>(tempRow));
+            }
+            res.add(tempState);
+            return;
+        }
+
+        //遍历列
+        for (int column = 0; column < n; column++) {
+            //计算主对角线和次对角线
+            //主对角线的取值范围是[-n+1,n-1]之间，这里要计算索引不能使用负整数，所以使用n-1保证索引从0开始。
+            int d1 = row - column + n - 1;
+            int d2 = row + column;
+            //剪枝: 所在列、所在主次对角线不能存在皇后
+            if (!columns[column] && !diags1[d1] && !diags2[d2]) {
+                //更新状态: 放置Q
+                state.get(row).set(column, "Q");
+                //当前列、主对角线、次对角线 更新为占据状态
+                columns[column] = diags1[d1] = diags2[d2] = true;
+
+                //递归
+                backtrack5(row + 1, n, state, res, columns, diags1, diags2);
+
+                //释放状态
+                state.get(row).set(column, "#");
+                columns[column] = diags1[d1] = diags2[d2] = false;
+            }
+        }
+
+    }
+
+    public static void mockNQueens() {
+        int n = 4;
+        Log.d("BackTrack", "N皇后问题，n = " + n);
+        List<List<List<String>>> nQueens = BackTrack.nQueens(n);
+        for (int i = 0; i < nQueens.size(); i++) {
+            List<List<String>> queen = nQueens.get(i);
+            int num = i + 1;
+            Log.d("BackTrack", "N皇后问题 解法" + num + " ===>");
+            for (List<String> row : queen) {
+                Log.d("BackTrack", Arrays.toString(row.toArray()));
+            }
+            Log.d("BackTrack", "解法" + num + " ===> END ");
+        }
+    }
+
 
     public static void mockBackTrack() {
         int[] nums = new int[]{1, 2, 3};
@@ -212,12 +292,13 @@ public class BackTrack {
         }
 
         int[] nums4 = new int[]{1, 3, 3, 4, 3, 5};
-//        int[] nums4 = new int[]{4, 4, 5};
         List<List<Integer>> targetList4 = BackTrack.subsetSumII(nums4, 9);
         Log.d("BackTrack", "数组元素重复，输出不重复：");
         for (List<Integer> list : targetList4) {
             Log.d("BackTrack", Arrays.toString(list.toArray()));
         }
+
+        mockNQueens();
     }
 
 }
