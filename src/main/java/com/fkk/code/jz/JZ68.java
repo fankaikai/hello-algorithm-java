@@ -32,6 +32,8 @@ public class JZ68 {
 
     /**
      * 遍历树，分别找到对应pq节点，记录路径，最后对比路径，找到最后一个相同的节点就是公共父节点。
+     * 找到最近的公共祖先的隐藏含义是在这之上的节点都是重复的，所以查找路径的时候，要找最后一个相同节点
+     * 也就是找到第一个不相同的节点，前一个就是公共祖先。
      */
     public int lowestCommonAncestor2(TreeNode root, int p, int q) {
         ArrayList<Integer> pList = getPath(root, p);
@@ -44,7 +46,6 @@ public class JZ68 {
             if (x == y) {
                 res = x;
             } else {
-                //不太理解这里为什么要执行break，很奇怪
                 break;
             }
         }
