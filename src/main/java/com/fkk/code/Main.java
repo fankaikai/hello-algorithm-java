@@ -1,12 +1,6 @@
 package com.fkk.code;
 
-import com.fkk.code.LeetCode.*;
-import com.fkk.code.algorithm.BackTrack;
-import com.fkk.code.algorithm.Hanota;
-import com.fkk.code.algorithm.PkgAlgorithm;
-import com.fkk.code.algorithm.Sort;
-import com.fkk.code.ds.Heap;
-import com.fkk.code.utils.Log;
+import com.fkk.code.LeetCode.LC394;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,7 +12,8 @@ public class Main {
 //        Heap.mockMaxHeap();
 //        Hanota.mockHanota();
 //        BackTrack.mockBackTrack();
-        PkgAlgorithm.mockPkgAlgo();
+//        PkgAlgorithm.mockPkgAlgo();
+        LC394.test();
     }
 
 
