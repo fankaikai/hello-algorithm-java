@@ -1,5 +1,6 @@
 package com.fkk.code;
 
+import com.fkk.code.LeetCode.LC151;
 import com.fkk.code.LeetCode.LC205;
 import com.fkk.code.LeetCode.LC387;
 import com.fkk.code.LeetCode.LC394;
@@ -17,7 +18,8 @@ public class Main {
 //        PkgAlgorithm.mockPkgAlgo();
 //        LC394.test();
 //        LC387.test();
-        LC205.test();
+//        LC205.test();
+        LC151.test();
     }
 
 
