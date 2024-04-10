@@ -1,9 +1,6 @@
 package com.fkk.code;
 
-import com.fkk.code.LeetCode.LC151;
-import com.fkk.code.LeetCode.LC205;
-import com.fkk.code.LeetCode.LC387;
-import com.fkk.code.LeetCode.LC394;
+import com.fkk.code.LeetCode.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,7 +16,8 @@ public class Main {
 //        LC394.test();
 //        LC387.test();
 //        LC205.test();
-        LC151.test();
+//        LC151.test();
+        LC239.test();
     }
 
 
