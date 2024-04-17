@@ -10,6 +10,9 @@ import java.util.*;
 public class LC239 {
 
 
+    /**
+     * TODO: 复杂度分析
+     */
     public int[] maxSlidingWindow(int[] nums, int k) {
         //这里使用数组，每个数组容量都是2，arr[0]表示值，arr[1]表示下标
         PriorityQueue<int[]> maxHeap = new PriorityQueue<int[]>(1, new Comparator<int[]>() {
@@ -36,6 +39,20 @@ public class LC239 {
         }
 
         return res;
+    }
+
+    /**
+     * TODO: 方法二,单调队列
+     */
+    public int[] maxSlidingWindow2(int[] nums, int k){
+        return null;
+    }
+
+    /**
+     * TODO: 方法三，分块预处理
+     */
+    public int[] maxSlidingWindow3(int[] nums, int k){
+        return null;
     }
 
 
