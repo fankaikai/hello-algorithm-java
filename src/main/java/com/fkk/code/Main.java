@@ -17,7 +17,8 @@ public class Main {
 //        LC387.test();
 //        LC205.test();
 //        LC151.test();
-        LC239.test();
+//        LC239.test();
+        LC6.test();
     }
 
 
